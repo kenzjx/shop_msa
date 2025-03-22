@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "1jGNCVfOSRU8ejmd0ZlkeWga7mgd2qNdpp8DlZARROM=",
+  "Source": "IAM",
+  "BasePath": "_content/IAM",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
