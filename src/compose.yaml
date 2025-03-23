@@ -1,0 +1,30 @@
+﻿version: '3.8'
+
+services:
+  iam:
+    build:
+      context: .
+      dockerfile: Services/IAM/IAM/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=IdentityUserDB;User ID=sa;Password=YourStrong@123;TrustServerCertificate=True
+    depends_on:
+      - mssql
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@123
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
+  

@@ -1,6 +1,0 @@
-﻿services:
-  iam:
-    image: iam
-    build:
-      context: .
-      dockerfile: IAM/Dockerfile
