@@ -51,6 +51,20 @@ builder.Services.AddIdentityServer(options =>
         }
     })
     .AddDeveloperSigningCredential();
+builder.Services.AddSingleton<TokenValidationParameters>(sp => new TokenValidationParameters
+{
+    ValidateIssuer = true,
+    ValidIssuer = "https://localhost:5097", // Thay bằng issuer của bạn
+
+    ValidateAudience = true,
+    ValidAudience = "shop", // Scope hoặc audience của API
+
+    ValidateLifetime = true, // Kiểm tra thời gian sống của token
+    ClockSkew = TimeSpan.Zero, // Không cho phép chênh lệch thời gian
+
+    ValidateIssuerSigningKey = true,
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("your-secret-key")) // Khóa ký token
+});
 
 // cấu hình xác thực
 builder.Services.AddAuthentication()
@@ -199,6 +213,6 @@ app.MapPost("/auth/login", async (
         // ... thêm expires_in nếu muốn
     });
 });
-// app.MapGrpcService<TokenCheckServiceImpl>();
+app.MapGrpcService<TokenCheckServiceImpl>();
 // app.UseHttpsRedirection();
 app.Run();

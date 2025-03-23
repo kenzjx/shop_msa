@@ -12,6 +12,8 @@ message TokenRequest {
 }
 
 message TokenReply {
-  bool is_valid = 1;
-  string error_message = 2;
+  bool is_valid = 1; // Token có hợp lệ không
+  string error_message = 2; // Thông báo lỗi nếu không hợp lệ
+  repeated string roles = 3; // Danh sách các role của người dùng
+  repeated string policies = 4; // Danh sách các policy của người dùng
 }
