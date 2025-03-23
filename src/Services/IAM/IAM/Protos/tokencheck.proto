@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "IAM.Proto";
+
+service TokenCheckService {
+  // RPC method: gửi token, trả về kết quả
+  rpc ValidateToken (TokenRequest) returns (TokenReply);
+}
+
+message TokenRequest {
+  string token = 1;
+}
+
+message TokenReply {
+  bool is_valid = 1;
+  string error_message = 2;
+}

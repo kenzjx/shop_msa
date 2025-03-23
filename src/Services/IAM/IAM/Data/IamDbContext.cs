@@ -9,4 +9,17 @@ public class IamDbContext : IdentityDbContext
         : base(options)
     {
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+        foreach (var entityType in builder.Model.GetEntityTypes())
+        {
+            var tableName = entityType.GetTableName()!;
+            if (tableName.StartsWith("Aspnet"))
+            {
+                entityType.SetTableName(tableName.Substring(6));
+            }
+        }
+    }
 }
